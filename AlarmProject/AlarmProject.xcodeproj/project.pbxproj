@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		812396292884FB960057EEFD /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812396282884FB960057EEFD /* Alarm.swift */; };
 		8123962B2884FC1E0057EEFD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8123962A2884FC1E0057EEFD /* ContentView.swift */; };
+		8123962F28850C530057EEFD /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8123962E28850C530057EEFD /* Pokemon.swift */; };
 		81690364288170A5007A1812 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81690363288170A5007A1812 /* Banner.swift */; };
 		81690368288197CE007A1812 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81690367288197CE007A1812 /* Timer.swift */; };
 		8169036A28819839007A1812 /* StopWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8169036928819839007A1812 /* StopWatch.swift */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		812396282884FB960057EEFD /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		8123962A2884FC1E0057EEFD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8123962E28850C530057EEFD /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		81690363288170A5007A1812 /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		81690367288197CE007A1812 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		8169036928819839007A1812 /* StopWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatch.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 			children = (
 				816E6F0C288161E500E64482 /* AlarmProjectApp.swift */,
 				812396282884FB960057EEFD /* Alarm.swift */,
+				8123962E28850C530057EEFD /* Pokemon.swift */,
 				8123962A2884FC1E0057EEFD /* ContentView.swift */,
 				81B36A5628826221002528FA /* AlramList.swift */,
 				81690367288197CE007A1812 /* Timer.swift */,
@@ -280,6 +283,7 @@
 				8123962B2884FC1E0057EEFD /* ContentView.swift in Sources */,
 				81690364288170A5007A1812 /* Banner.swift in Sources */,
 				812396292884FB960057EEFD /* Alarm.swift in Sources */,
+				8123962F28850C530057EEFD /* Pokemon.swift in Sources */,
 				81B36A5728826221002528FA /* AlramList.swift in Sources */,
 				81690368288197CE007A1812 /* Timer.swift in Sources */,
 				816E6F0D288161E500E64482 /* AlarmProjectApp.swift in Sources */,

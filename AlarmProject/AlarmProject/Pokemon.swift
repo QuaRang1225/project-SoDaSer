@@ -4,6 +4,7 @@ struct pokemonModel: Identifiable {
     var id: String
     
 }
+
 struct Pokemon: View {
     @State var pokemonList = [
         pokemonModel(id: "12:30"),

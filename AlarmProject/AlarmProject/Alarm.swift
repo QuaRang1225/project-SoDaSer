@@ -11,6 +11,10 @@ import SwiftUI
 import AVKit
 import AVFoundation
 import UserNotifications
+import UserNotificationsUI
+import NotificationCenter
+import BackgroundTasks
+
 
 
 class SoundSetting: ObservableObject {        //1. soundSetting의 단일 인스턴스를 만듬    /// singleton ? :    /*싱글 톤은 한 번만 생성 된 다음 사용해야하는 모든 곳에서 공유해야하는 객체입니다 */
@@ -22,6 +26,7 @@ class SoundSetting: ObservableObject {        //1. soundSetting의 단일 인스
     enum SoundOption: String {
         case Tada
         case Thunder
+        case Opening
         
     }
    
@@ -41,7 +46,7 @@ struct Alarm:View{
     @State var currentDate = Date()
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
-
+    //@EnvironmentObject var contentVeiw:ContentView
     
     @State var alarmAdd: Bool = false
     @State var button:String = "plus.app.fill"
@@ -51,7 +56,9 @@ struct Alarm:View{
     @State private var currentTime=String()
     @State private var pushTime1=String()
     @State private var item:Int = 0
+    @State private var listItem:Int = 1
     @State private var alarmList = Array(repeating: "", count: 10)
+    @State private var alarmListNum = [Int]()
     @State private var state:Bool = false
     @State private var save:Bool = false
     @Binding var alarm : Bool
@@ -84,20 +91,17 @@ struct Alarm:View{
             Section{
                 
             VStack{
-                Button("확인"){
-                   
-                }
                
                 Text(timeFormatter.string(from: currentDate)).font(.system(size: 30)).bold()
                            .onReceive(timer) { input in
                                 self.currentDate = input
-                                print("hello")
+                                //print(timeFormatter.string(from: currentDate))
                             }
                 
                 ForEach(alarmList, id: \.self){ item in
                     if dateFormatter.string(from: currentDate) == item{
                             Text("일어나라").onAppear(){
-                                UNUserNotificationCenter.current().requestAuthorization(options: [.alert ,.badge,.sound]){ success, error in
+                                UNUserNotificationCenter.current().requestAuthorization(options: [.alert ,.badge,.sound,]){ success, error in
                                     if success{
                                         print("허용")
                                     }else if let error = error{
@@ -108,12 +112,12 @@ struct Alarm:View{
                                 content.title = "일어나"
                                 content.subtitle = "일어나야지"
                                 content.sound = UNNotificationSound.default
-                                let triger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                                let triger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
                                 let request = UNNotificationRequest(identifier: "req", content: content, trigger: triger)
                                 UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
                                 self.state = true
                                 if self.state{
-                                    SoundSetting.instance.playSound(sound: .Thunder)
+                                    SoundSetting.instance.playSound(sound: .Opening)
                                 }
                             
                             
@@ -161,14 +165,16 @@ struct Alarm:View{
                                     alarmList[item].append(pushTime)
                                     pushTime1 = alarmList[item]
                                     currentTime = timeFormatter.string(from: currentDate)
+                                    alarmListNum.append(item)
                                     self.item += 1
                                     self.save = true
+                                    
+                                    //listItem += 1
                                 }){
                                     Text("저장").font(.system(size: 30)).fontWeight(.black).foregroundColor(.white).padding(30)
                                 }.alert(isPresented: $save){
                                     Alert(title: Text("알람이 저장 되었습니다!"))
-                                }.transition(.move(edge: .bottom))
-                                    .animation(.easeIn(duration: 0.2))
+                                }
                                     
                                 
 
@@ -188,7 +194,7 @@ struct Alarm:View{
                 
                 //if item > 0{
                     VStack{
-                        List {
+                       List {
                             Section(header: Text("알람 목록")) {
                                 ForEach(alarmList, id: \.self) { s in
                                     
@@ -196,11 +202,30 @@ struct Alarm:View{
 //                                        Text("일어나라")
 //                                    }
                                     
-                                HStack{
+                                
                                     ZStack{
+                                        
                                         if s != ""{
                                             Banner(icon: "alarm.fill", color: Color.blue, content: "알람")
-                                            Text(s).font(.system(size: 25)).foregroundColor(.white).padding(.leading,200)
+                                            HStack{
+                                                Text(s).font(.system(size: 25)).foregroundColor(.white).padding(.leading,150).onAppear(){
+                                                    //alarmList1 = alarmList
+                                                    //print(alarmListNum[listItem])
+                                                }
+                                                
+                                            
+                                            Button(action: {
+                                           
+                                                if let firstIndex = alarmList.firstIndex(of: s) {
+                                                    alarmList.remove(at: firstIndex)
+                                                    alarmList.append("")
+                                                    item -= 1
+                                                }
+                                                
+                                                
+                                            }){
+                                                Text("삭제").foregroundColor(.blue).padding(5).background(Color.white).cornerRadius(10)
+                                            }
                                             
                                             
                                         }
@@ -209,17 +234,13 @@ struct Alarm:View{
                                     }
                                     
                                 }
-                                    
-                                    
-                                //AlarmList(pushTime1: self.$pushTime1).padding()
+
                             }
                             }
                         }
   
                     }
-                //}
-                
-                
+
             }
             
         }

@@ -11,6 +11,7 @@
 		8123962B2884FC1E0057EEFD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8123962A2884FC1E0057EEFD /* ContentView.swift */; };
 		8140168B28866621009FA2E8 /* Thunder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8140168A28866620009FA2E8 /* Thunder.mp3 */; };
 		8140168D288666E3009FA2E8 /* Tada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8140168C288666E3009FA2E8 /* Tada.mp3 */; };
+		814016922887C385009FA2E8 /* Opening.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 814016912887C384009FA2E8 /* Opening.mp3 */; };
 		81690364288170A5007A1812 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81690363288170A5007A1812 /* Banner.swift */; };
 		81690368288197CE007A1812 /* TimerCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81690367288197CE007A1812 /* TimerCount.swift */; };
 		8169036A28819839007A1812 /* StopWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8169036928819839007A1812 /* StopWatch.swift */; };
@@ -47,6 +48,7 @@
 		8140168A28866620009FA2E8 /* Thunder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Thunder.mp3; sourceTree = "<group>"; };
 		8140168C288666E3009FA2E8 /* Tada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tada.mp3; sourceTree = "<group>"; };
 		8140168E2886B44B009FA2E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		814016912887C384009FA2E8 /* Opening.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Opening.mp3; sourceTree = "<group>"; };
 		81690363288170A5007A1812 /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		81690367288197CE007A1812 /* TimerCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCount.swift; sourceTree = "<group>"; };
 		8169036928819839007A1812 /* StopWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatch.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 		8140168928865F45009FA2E8 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				814016912887C384009FA2E8 /* Opening.mp3 */,
 				8140168C288666E3009FA2E8 /* Tada.mp3 */,
 				8140168A28866620009FA2E8 /* Thunder.mp3 */,
 			);
@@ -269,6 +272,7 @@
 				816E6F14288161E600E64482 /* Preview Assets.xcassets in Resources */,
 				816E6F11288161E600E64482 /* Assets.xcassets in Resources */,
 				8140168B28866621009FA2E8 /* Thunder.mp3 in Resources */,
+				814016922887C385009FA2E8 /* Opening.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +467,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AlarmProject/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -493,6 +498,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AlarmProject/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

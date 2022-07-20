@@ -13,11 +13,13 @@ struct ContentView: View {
     @State var currentDate = Date()
     let timer1 = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
+    //@EnvironmentObject var alarmView: Alarm
+    
     @State private var worldTime:Bool = false
     @State private var alarm:Bool = false
     @State private var stopWatch:Bool = false
     @State private var timer:Bool = false
-    
+    //@Binding private var alarmList = Array(repeating: "", count: 10)
     
     var timeFormatter: DateFormatter {
         let formatter = DateFormatter()

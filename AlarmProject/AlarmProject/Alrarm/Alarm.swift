@@ -43,10 +43,13 @@ class SoundSetting: ObservableObject {        //1. soundSetting의 단일 인스
 
 struct Alarm:View{
     
+    
     @State var currentDate = Date()
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
     
-    //@EnvironmentObject var contentVeiw:ContentView
+    @Environment(\.managedObjectContext) var mac
+    @FetchRequest(sortDescriptors: []) var timeList: FetchedResults<Entity>
     
     @State var alarmAdd: Bool = false
     @State var button:String = "plus.app.fill"
@@ -81,21 +84,21 @@ struct Alarm:View{
     init(alarm:Binding<Bool> = .constant(false)){
         _alarm = alarm
         
-        
     }
+    
     
     
     var body: some View{
         
-        ZStack(alignment: .bottom){
-            Section{
-                
+        
+           
+        
             VStack{
                
                 Text(timeFormatter.string(from: currentDate)).font(.system(size: 30)).bold()
                            .onReceive(timer) { input in
                                 self.currentDate = input
-                                //print(timeFormatter.string(from: currentDate))
+                                
                             }
                 
                 ForEach(alarmList, id: \.self){ item in
@@ -133,7 +136,7 @@ struct Alarm:View{
                 
                 
                 ZStack{
-                    //Spacer().frame(height: 80)
+                    
                     Banner(icon: "alarm.fill", color: Color.blue, content: "알람").padding()
                     Button(action:{
                         alarmAdd.toggle()
@@ -143,8 +146,7 @@ struct Alarm:View{
                             button = "plus.app.fill"
                         }
                         
-                        //print(alarmAdd)
-                        //SoundSetting.instance.playSound(sound: .Tada)
+                        
                     }){
                         Image(systemName: button).font(.system(size: 50)).foregroundColor(.white).padding(40).padding(.leading,250)
                     }
@@ -165,11 +167,15 @@ struct Alarm:View{
                                     alarmList[item].append(pushTime)
                                     pushTime1 = alarmList[item]
                                     currentTime = timeFormatter.string(from: currentDate)
-                                    alarmListNum.append(item)
+                                    //alarmListNum.append(item)
                                     self.item += 1
                                     self.save = true
                                     
-                                    //listItem += 1
+                                    let time = Entity(context:mac)
+                                    time.time = pushTime1
+                                    try? mac.save()
+                                    
+                                    
                                 }){
                                     Text("저장").font(.system(size: 30)).fontWeight(.black).foregroundColor(.white).padding(30)
                                 }.alert(isPresented: $save){
@@ -191,62 +197,50 @@ struct Alarm:View{
                     
                     
                 }
-                
-                //if item > 0{
-                    VStack{
-                       List {
-                            Section(header: Text("알람 목록")) {
-                                ForEach(alarmList, id: \.self) { s in
-                                    
-//                                    if s == dateFormatter.string(from: current){
-//                                        Text("일어나라")
-//                                    }
-                                    
-                                
-                                    ZStack{
-                                        
-                                        if s != ""{
-                                            Banner(icon: "alarm.fill", color: Color.blue, content: "알람")
-                                            HStack{
-                                                Text(s).font(.system(size: 25)).foregroundColor(.white).padding(.leading,150).onAppear(){
-                                                    //alarmList1 = alarmList
-                                                    //print(alarmListNum[listItem])
-                                                }
-                                                
-                                            
-                                            Button(action: {
-                                           
-                                                if let firstIndex = alarmList.firstIndex(of: s) {
-                                                    alarmList.remove(at: firstIndex)
-                                                    alarmList.append("")
-                                                    item -= 1
-                                                }
-                                                
-                                                
-                                            }){
-                                                Text("삭제").foregroundColor(.blue).padding(5).background(Color.white).cornerRadius(10)
-                                            }
-                                            
-                                            
-                                        }
-                                        
-                                        
-                                    }
-                                    
-                                }
 
+                    VStack{
+                        
+                        List{
+                            ForEach(timeList){ list in
+                                //Text(list.st ?? "unknown")
+                                 //Section(header: Text("알람 목록")) {
+                                     //ForEach(timeList, id: \.self) { s in
+                                     
+                                     
+                                         ZStack{
+                                             
+                                             //if s != ""{
+                                                 Banner(icon: "alarm.fill", color: Color.blue, content: "알람")
+                                                 HStack{
+                                                     AlarmList(time: list.time ?? "Unknown")
+                                                     
+            
+                                         }
+                                         }
+
+                            }.onDelete(perform: deleteBooks)
+                                 //}
                             }
-                            }
-                        }
+                        
+                       
   
                     }
 
             }
             
-        }
         
-        }
+        
+        
    
+    }
+    func deleteBooks(at offsets: IndexSet) {
+        guard let index = offsets.first else { return }
+            
+                let times = timeList[index]
+                mac.delete(times)
+            
+
+            try? mac.save()
     }
     
 }

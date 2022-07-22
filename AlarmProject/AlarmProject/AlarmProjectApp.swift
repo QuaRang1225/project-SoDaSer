@@ -8,11 +8,15 @@
 import SwiftUI
 
 @main
+
 struct AlarmProjectApp: App {
+    //@StateObject private var store = TimeListStore()
+    //let persistenceController = PersistenceController.shared
     var body: some Scene {
         WindowGroup {
-            
-            ContentView()
+            ContentView()//.environment(\.managedObjectContext, store.container.viewContext)
+            //Alarm().environmentObject(store)
         }
+        
     }
 }

@@ -14,7 +14,7 @@ struct ContentView: View {
     let timer1 = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     //@EnvironmentObject var alarmView: Alarm
-    
+    @StateObject private var store = TimeListStore()
     @State private var worldTime:Bool = false
     @State private var alarm:Bool = false
     @State private var stopWatch:Bool = false
@@ -42,7 +42,7 @@ struct ContentView: View {
                     Banner(icon: "network", color: Color.green, content: "세계시계").padding(.trailing,100)
                 }
                 Spacer()
-                NavigationLink(destination: Alarm(alarm:self.$alarm)){
+                NavigationLink(destination: Alarm(alarm:self.$alarm).environment(\.managedObjectContext, store.container.viewContext)){
                     Banner(icon: "alarm.fill", color: Color.blue, content: "알람").padding(.leading,100)
                 }
                 Spacer()

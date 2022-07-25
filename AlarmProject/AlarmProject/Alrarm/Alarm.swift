@@ -46,10 +46,11 @@ struct Alarm:View{
     
     @State var currentDate = Date()
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
 
     
     @Environment(\.managedObjectContext) var mac
-    @FetchRequest(sortDescriptors: []) var timeList: FetchedResults<Entity>
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Entity.time, ascending: true)]) var timeList: FetchedResults<Entity>
     
     @State var alarmAdd: Bool = false
     @State var button:String = "plus.app.fill"
@@ -79,7 +80,18 @@ struct Alarm:View{
         return formatter
 
     }
-   
+    var yearFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy'년' MM'월' dd'일' a HH':'mm':'ss"
+        return formatter
+
+    }
+    var yearsettingFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy'년' MM'월' dd'일' a HH':'mm':'00"
+        return formatter
+
+    }
     
     init(alarm:Binding<Bool> = .constant(false)){
         _alarm = alarm
@@ -95,45 +107,13 @@ struct Alarm:View{
         
             VStack{
                
-                Text(timeFormatter.string(from: currentDate)).font(.system(size: 30)).bold()
+                Text(yearFormatter.string(from: currentDate)).font(.system(size: 25)).bold()
                            .onReceive(timer) { input in
                                 self.currentDate = input
-                                
+                             
                             }
-                
-                ForEach(alarmList, id: \.self){ item in
-                    if dateFormatter.string(from: currentDate) == item{
-                            Text("일어나라").onAppear(){
-                                UNUserNotificationCenter.current().requestAuthorization(options: [.alert ,.badge,.sound,]){ success, error in
-                                    if success{
-                                        print("허용")
-                                    }else if let error = error{
-                                        print(error.localizedDescription)
-                                    }
-                                }
-                                let content = UNMutableNotificationContent()
-                                content.title = "일어나"
-                                content.subtitle = "일어나야지"
-                                content.sound = UNNotificationSound.default
-                                let triger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-                                let request = UNNotificationRequest(identifier: "req", content: content, trigger: triger)
-                                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-                                self.state = true
-                                if self.state{
-                                    SoundSetting.instance.playSound(sound: .Opening)
-                                }
-                            
-                            
-                            }
-                            
-                        
-                        }
-                    
-                }
-              
-                
-                
-                
+
+
                 
                 ZStack{
                     
@@ -166,14 +146,51 @@ struct Alarm:View{
                                     pushTime = dateFormatter.string(from: wakeup)
                                     alarmList[item].append(pushTime)
                                     pushTime1 = alarmList[item]
-                                    currentTime = timeFormatter.string(from: currentDate)
-                                    //alarmListNum.append(item)
+                                    currentTime = yearsettingFormatter.string(from: wakeup)
+                                    alarmList.sort(by: <)
+                                 
                                     self.item += 1
                                     self.save = true
                                     
                                     let time = Entity(context:mac)
                                     time.time = pushTime1
                                     try? mac.save()
+
+                                    let useTime:Int
+                                    let now = yearFormatter.string(from: currentDate)
+                                    guard let startTime:Date = yearFormatter.date(from: now) else {return}
+                                    guard let endTime:Date = yearsettingFormatter.date(from: self.currentTime)  else {return}
+                                    if startTime >= endTime{
+                                        useTime = Int((endTime + 86400).timeIntervalSince(startTime))
+                                    }else{
+                                        useTime = Int(endTime.timeIntervalSince(startTime))
+                                    }
+
+                                    print(startTime)
+                                    print(endTime+86400)
+                                    print(useTime)
+                                    print(alarmList)
+
+                                    
+                                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert ,.badge,.sound,]){ success, error in
+                                        if success{
+                                            print("허용")
+                                        }else if let error = error{
+                                            print(error.localizedDescription)
+                                        }
+                                    }
+                                    let content = UNMutableNotificationContent()
+                                    content.title = "일어나"
+                                    content.subtitle = "일어나야지"
+                                    content.sound = UNNotificationSound.default
+                                    let triger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(useTime), repeats: false)
+                                    let request = UNNotificationRequest(identifier: "req", content: content, trigger: triger)
+                                    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+                                    
+                                    ForEach(timeList, id: \.self){ item in
+                                        
+                                    }
+                                        
                                     
                                     
                                 }){
@@ -202,11 +219,7 @@ struct Alarm:View{
                         
                         List{
                             ForEach(timeList){ list in
-                                //Text(list.st ?? "unknown")
-                                 //Section(header: Text("알람 목록")) {
-                                     //ForEach(timeList, id: \.self) { s in
-                                     
-                                     
+
                                          ZStack{
                                              
                                              //if s != ""{
@@ -219,7 +232,7 @@ struct Alarm:View{
                                          }
 
                             }.onDelete(perform: deleteBooks)
-                                 //}
+                                 
                             }
                         
                        

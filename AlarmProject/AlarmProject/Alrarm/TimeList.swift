@@ -11,6 +11,9 @@ class TimeList:Identifiable,ObservableObject{
     @Published var content : String
     init(content:String){
         self.content = content
+        self.content.sorted()
+        
     }
+    
     
 }

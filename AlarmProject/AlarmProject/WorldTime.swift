@@ -17,7 +17,7 @@ struct WoldTime:View{
     }
     var body: some View{
         VStack{
-            Banner(icon: "network", color: Color.green, content: "세계시계").padding()
+            Banner(icon: "network", color: Color.white, content: "세계시계").padding()
             Spacer()
             Rectangle().foregroundColor(.green).cornerRadius(20).padding()
             

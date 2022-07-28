@@ -17,8 +17,14 @@ struct TimerCount:View{
     }
     var body: some View{
         VStack{
-            Banner(icon: "timer", color: Color.yellow, content: "타이머").padding()
-            Rectangle().foregroundColor(.yellow).cornerRadius(20).padding()
+            Banner(icon: "timer",  color: Color.white,content: "타이머").padding()
+            
+            Text("d").font(.system(size: 30)).foregroundColor(.indigo).fontWeight(.bold).padding()
+                       
+            Spacer().frame(height: 20)
+            Rectangle().foregroundColor(.indigo).frame(width: 75, height: 20).cornerRadius(5)
+            Rectangle().foregroundColor(.indigo).frame(width: 200, height: 300).cornerRadius(20)
+            
             
         }
     }

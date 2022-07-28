@@ -11,9 +11,11 @@ class TimeList:Identifiable,ObservableObject{
     @Published var content : String
     init(content:String){
         self.content = content
-        self.content.sorted()
-        
     }
-    
-    
+}
+class ContentList:Identifiable,ObservableObject{
+    @Published var content : String
+    init(content:String){
+        self.content = content
+    }
 }

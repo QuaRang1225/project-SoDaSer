@@ -15,9 +15,15 @@
 		8144C002288999CE000E8570 /* TimeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8144C001288999CE000E8570 /* TimeList.swift */; };
 		8144C00428899B94000E8570 /* TimeListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8144C00328899B94000E8570 /* TimeListStore.swift */; };
 		8144C0092889C56A000E8570 /* AlarmProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8144C0072889C56A000E8570 /* AlarmProject.xcdatamodeld */; };
+		8144C16228910FA6000E8570 /* SoundSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8144C16128910FA6000E8570 /* SoundSetting.swift */; };
+		8144C164289110ED000E8570 /* DatePickerWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8144C163289110ED000E8570 /* DatePickerWindow.swift */; };
+		8144C16628911723000E8570 /* FormatterClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8144C16528911723000E8570 /* FormatterClass.swift */; };
+		8144C16828912474000E8570 /* AlertAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8144C16728912474000E8570 /* AlertAlarm.swift */; };
+		8144C16A2891CC7C000E8570 /* StopWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8144C1692891CC7C000E8570 /* StopWatch.swift */; };
+		8144C16D2891CE3A000E8570 /* StopWatchWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8144C16C2891CE3A000E8570 /* StopWatchWindow.swift */; };
+		8144C16F2891DBE3000E8570 /* StopWatchClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8144C16E2891DBE3000E8570 /* StopWatchClass.swift */; };
 		81690364288170A5007A1812 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81690363288170A5007A1812 /* Banner.swift */; };
 		81690368288197CE007A1812 /* TimerCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81690367288197CE007A1812 /* TimerCount.swift */; };
-		8169036A28819839007A1812 /* StopWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8169036928819839007A1812 /* StopWatch.swift */; };
 		816E6F0D288161E500E64482 /* AlarmProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816E6F0C288161E500E64482 /* AlarmProjectApp.swift */; };
 		816E6F11288161E600E64482 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 816E6F10288161E600E64482 /* Assets.xcassets */; };
 		816E6F14288161E600E64482 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 816E6F13288161E600E64482 /* Preview Assets.xcassets */; };
@@ -55,9 +61,15 @@
 		8144C001288999CE000E8570 /* TimeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeList.swift; sourceTree = "<group>"; };
 		8144C00328899B94000E8570 /* TimeListStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeListStore.swift; sourceTree = "<group>"; };
 		8144C0082889C56A000E8570 /* AlarmProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AlarmProject.xcdatamodel; sourceTree = "<group>"; };
+		8144C16128910FA6000E8570 /* SoundSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundSetting.swift; sourceTree = "<group>"; };
+		8144C163289110ED000E8570 /* DatePickerWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerWindow.swift; sourceTree = "<group>"; };
+		8144C16528911723000E8570 /* FormatterClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterClass.swift; sourceTree = "<group>"; };
+		8144C16728912474000E8570 /* AlertAlarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAlarm.swift; sourceTree = "<group>"; };
+		8144C1692891CC7C000E8570 /* StopWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatch.swift; sourceTree = "<group>"; };
+		8144C16C2891CE3A000E8570 /* StopWatchWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchWindow.swift; sourceTree = "<group>"; };
+		8144C16E2891DBE3000E8570 /* StopWatchClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchClass.swift; sourceTree = "<group>"; };
 		81690363288170A5007A1812 /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		81690367288197CE007A1812 /* TimerCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCount.swift; sourceTree = "<group>"; };
-		8169036928819839007A1812 /* StopWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatch.swift; sourceTree = "<group>"; };
 		816E6F09288161E500E64482 /* AlarmProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		816E6F0C288161E500E64482 /* AlarmProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmProjectApp.swift; sourceTree = "<group>"; };
 		816E6F10288161E600E64482 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -99,6 +111,7 @@
 		8140168928865F45009FA2E8 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				8144C16128910FA6000E8570 /* SoundSetting.swift */,
 				814016912887C384009FA2E8 /* Opening.mp3 */,
 				8140168C288666E3009FA2E8 /* Tada.mp3 */,
 				8140168A28866620009FA2E8 /* Thunder.mp3 */,
@@ -113,8 +126,20 @@
 				81B36A5628826221002528FA /* AlramList.swift */,
 				8144C001288999CE000E8570 /* TimeList.swift */,
 				812396282884FB960057EEFD /* Alarm.swift */,
+				8144C163289110ED000E8570 /* DatePickerWindow.swift */,
+				8144C16728912474000E8570 /* AlertAlarm.swift */,
 			);
 			path = Alrarm;
+			sourceTree = "<group>";
+		};
+		8144C16B2891CD39000E8570 /* StopWatch */ = {
+			isa = PBXGroup;
+			children = (
+				8144C1692891CC7C000E8570 /* StopWatch.swift */,
+				8144C16C2891CE3A000E8570 /* StopWatchWindow.swift */,
+				8144C16E2891DBE3000E8570 /* StopWatchClass.swift */,
+			);
+			path = StopWatch;
 			sourceTree = "<group>";
 		};
 		816E6F00288161E500E64482 = {
@@ -141,15 +166,16 @@
 		816E6F0B288161E500E64482 /* AlarmProject */ = {
 			isa = PBXGroup;
 			children = (
-				8144C00628899BA8000E8570 /* Alrarm */,
-				8140168E2886B44B009FA2E8 /* Info.plist */,
-				8140168928865F45009FA2E8 /* Sound */,
-				816E6F0C288161E500E64482 /* AlarmProjectApp.swift */,
+				8144C16528911723000E8570 /* FormatterClass.swift */,
 				8123962A2884FC1E0057EEFD /* ContentView.swift */,
+				8140168E2886B44B009FA2E8 /* Info.plist */,
+				8144C00628899BA8000E8570 /* Alrarm */,
+				8144C16B2891CD39000E8570 /* StopWatch */,
+				816E6F0C288161E500E64482 /* AlarmProjectApp.swift */,
 				81690367288197CE007A1812 /* TimerCount.swift */,
 				81690363288170A5007A1812 /* Banner.swift */,
-				8169036928819839007A1812 /* StopWatch.swift */,
 				816E6F362881631800E64482 /* WorldTime.swift */,
+				8140168928865F45009FA2E8 /* Sound */,
 				816E6F10288161E600E64482 /* Assets.xcassets */,
 				816E6F12288161E600E64482 /* Preview Content */,
 			);
@@ -266,6 +292,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ko,
 				Base,
 			);
 			mainGroup = 816E6F00288161E500E64482;
@@ -315,14 +342,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				816E6F372881631800E64482 /* WorldTime.swift in Sources */,
-				8169036A28819839007A1812 /* StopWatch.swift in Sources */,
 				8123962B2884FC1E0057EEFD /* ContentView.swift in Sources */,
 				8144C0092889C56A000E8570 /* AlarmProject.xcdatamodeld in Sources */,
+				8144C16828912474000E8570 /* AlertAlarm.swift in Sources */,
 				81690364288170A5007A1812 /* Banner.swift in Sources */,
+				8144C16D2891CE3A000E8570 /* StopWatchWindow.swift in Sources */,
+				8144C16628911723000E8570 /* FormatterClass.swift in Sources */,
 				8144C00428899B94000E8570 /* TimeListStore.swift in Sources */,
 				812396292884FB960057EEFD /* Alarm.swift in Sources */,
+				8144C164289110ED000E8570 /* DatePickerWindow.swift in Sources */,
+				8144C16F2891DBE3000E8570 /* StopWatchClass.swift in Sources */,
 				81B36A5728826221002528FA /* AlramList.swift in Sources */,
+				8144C16228910FA6000E8570 /* SoundSetting.swift in Sources */,
 				81690368288197CE007A1812 /* TimerCount.swift in Sources */,
+				8144C16A2891CC7C000E8570 /* StopWatch.swift in Sources */,
 				816E6F0D288161E500E64482 /* AlarmProjectApp.swift in Sources */,
 				8144C002288999CE000E8570 /* TimeList.swift in Sources */,
 			);
@@ -480,6 +513,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AlarmProject/Preview Content\"";
@@ -487,6 +521,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AlarmProject/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "알람";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -511,6 +546,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AlarmProject/Preview Content\"";
@@ -518,6 +554,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AlarmProject/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "알람";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

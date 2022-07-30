@@ -14,6 +14,7 @@ enum mode{
     case pause
 }
 class StopWatchClass:ObservableObject{
+    
     @Published var timeElapsed = 0.0
     @Published var stopMode:mode = .stop
     

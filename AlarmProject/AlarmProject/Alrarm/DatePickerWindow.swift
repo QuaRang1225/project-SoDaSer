@@ -73,9 +73,9 @@ struct DatePickerWindow:View{
                 guard let endTime:Date = FormatterClass.init().yearsettingFormatter.date(from: self.currentTime)  else {return}
                 
                 if startTime >= endTime{
-                    useTime = Int((endTime + 86400).timeIntervalSince(startTime))
+                    useTime = Int((endTime + 86400).timeIntervalSince(startTime))-4
                 }else{
-                    useTime = Int(endTime.timeIntervalSince(startTime))
+                    useTime = Int(endTime.timeIntervalSince(startTime))-4
                 }
                 
                 alarmListInterval.append(useTime)
@@ -86,9 +86,9 @@ struct DatePickerWindow:View{
                 print(endTime+86400)
                 print(useTime)
                 print(alarmList)
-                print(alarmListInterval)
-               
-           
+                
+                
+                
                 AlertAlarm().alertalram(timeinterval: alarmListInterval[alarmListInterval.count-1],listName: content ,listTime: String(FormatterClass.init().dateFormatter.string(from: wakeup)))
  
     

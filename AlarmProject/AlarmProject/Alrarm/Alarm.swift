@@ -21,7 +21,9 @@ struct Alarm:View{
     @State var button:String = "plus.app.fill"
     @State private var current = Date()
     @State var currentDate = Date()
+    @State var timeName = String()
     @Binding var alarm : Bool
+    
     
     @Environment(\.managedObjectContext) var mac
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Entity.time, ascending: true),NSSortDescriptor(keyPath: \Entity.alarmText, ascending: true)]) var timeList: FetchedResults<Entity>
@@ -29,7 +31,7 @@ struct Alarm:View{
     
     init(alarm:Binding<Bool> = .constant(false)){
         _alarm = alarm
-        //UITableView.appearance().backgroundView = Image("NIGHT")
+        
     }
     var body: some View{
         ZStack{
@@ -39,7 +41,7 @@ struct Alarm:View{
                 Text(FormatterClass.init().yearFormatter.string(from: currentDate)).font(.system(size: 25)).bold().foregroundColor(.white)
                            .onReceive(timer) { input in
                                 self.currentDate = input
-                               //print(FormatterClass.init().dateFormatter.string(from: currentDate))
+                               //print(FormatterClass.init().timeFormatter.string(from: currentDate))
                             }
                 ZStack{
                     
@@ -75,15 +77,11 @@ struct Alarm:View{
                     ForEach(timeList){ list in
                         
                         ZStack{
-                            //Banner(icon: "alarm.fill",  color: Color.white, content: "" )
-                            HStack{ AlarmList(time: list.time ?? "" ,content: list.alarmText ?? "")}
+                            
+                            HStack{ AlarmList(time: list.time ?? "" ,content: list.alarmText ?? "").onAppear(){
+                                timeName = list.alarmText ?? ""
+                            }}
                         }
-//                         Button(action: {
-//                             contentAdd.toggle()
-//                         }){
-//
-//
-//                         }
                     }.onDelete(perform: deleteBooks)
                          
                 }.listStyle(PlainListStyle())
@@ -103,6 +101,7 @@ struct Alarm:View{
         let times = timeList[index]
         mac.delete(times)
         try? mac.save()
+        AlertAlarm().caancelAlarm(timeName: timeName)
     }
     
 }

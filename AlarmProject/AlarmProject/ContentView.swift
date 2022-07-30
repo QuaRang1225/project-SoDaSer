@@ -52,6 +52,7 @@ struct ContentView: View {
                     NavigationLink(destination: TimerCount(timer:self.$timer)){
                         Banner(icon: "timer", color: Color.white, content: "타이머").padding(.leading,100)
                     }
+                   
                   
                     
                 }.padding()

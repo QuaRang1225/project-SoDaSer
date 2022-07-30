@@ -24,7 +24,12 @@ class AlertAlarm{
         let triger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(timeinterval) , repeats: false)
         let request = UNNotificationRequest(identifier: listName, content: content, trigger: triger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        
         //print("ddd")
+    }
+    func caancelAlarm(timeName:String){
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: [timeName])
     }
     
 }

@@ -19,3 +19,9 @@ class ContentList:Identifiable,ObservableObject{
         self.content = content
     }
 }
+class StopWatchStoreList:Identifiable,ObservableObject{
+    @Published var content : String
+    init(content:String){
+        self.content = content
+    }
+}

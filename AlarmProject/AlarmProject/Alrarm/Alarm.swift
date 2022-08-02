@@ -78,19 +78,13 @@ struct Alarm:View{
                         
                         ZStack{
                             
-                            HStack{ AlarmList(time: list.time ?? "" ,content: list.alarmText ?? "").onAppear(){
-                                timeName = list.alarmText ?? ""
+                            HStack{ AlarmList(time: list.time ?? "" ,content: list.alarmText ?? "unknown" ).onAppear(){
+                                timeName = list.alarmText ?? "unknown"
                             }}
                         }
                     }.onDelete(perform: deleteBooks)
                          
-                }.listStyle(PlainListStyle())
-                if contentAdd{
-                    ZStack{
-                        
-                    }
-                }
-
+                }.padding().listStyle(PlainListStyle())
             }
         }
             

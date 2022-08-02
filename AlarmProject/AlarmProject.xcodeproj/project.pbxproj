@@ -22,7 +22,6 @@
 		8144C16A2891CC7C000E8570 /* StopWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8144C1692891CC7C000E8570 /* StopWatch.swift */; };
 		8144C16D2891CE3A000E8570 /* StopWatchWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8144C16C2891CE3A000E8570 /* StopWatchWindow.swift */; };
 		8144C16F2891DBE3000E8570 /* StopWatchClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8144C16E2891DBE3000E8570 /* StopWatchClass.swift */; };
-		8166E4442895240300360F6A /* LLL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8166E4432895240300360F6A /* LLL.swift */; };
 		81690364288170A5007A1812 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81690363288170A5007A1812 /* Banner.swift */; };
 		81690368288197CE007A1812 /* TimerCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81690367288197CE007A1812 /* TimerCount.swift */; };
 		816E6F0D288161E500E64482 /* AlarmProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816E6F0C288161E500E64482 /* AlarmProjectApp.swift */; };
@@ -33,6 +32,7 @@
 		816E6F2A288161E700E64482 /* AlarmProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816E6F29288161E700E64482 /* AlarmProjectUITestsLaunchTests.swift */; };
 		816E6F372881631800E64482 /* WorldTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816E6F362881631800E64482 /* WorldTime.swift */; };
 		81B36A5728826221002528FA /* AlramList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B36A5628826221002528FA /* AlramList.swift */; };
+		81CA36E62897CC7700BFB9E6 /* StopWatchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA36E52897CC7700BFB9E6 /* StopWatchButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +69,6 @@
 		8144C1692891CC7C000E8570 /* StopWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatch.swift; sourceTree = "<group>"; };
 		8144C16C2891CE3A000E8570 /* StopWatchWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchWindow.swift; sourceTree = "<group>"; };
 		8144C16E2891DBE3000E8570 /* StopWatchClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchClass.swift; sourceTree = "<group>"; };
-		8166E4432895240300360F6A /* LLL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLL.swift; sourceTree = "<group>"; };
 		81690363288170A5007A1812 /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		81690367288197CE007A1812 /* TimerCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCount.swift; sourceTree = "<group>"; };
 		816E6F09288161E500E64482 /* AlarmProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +82,7 @@
 		816E6F29288161E700E64482 /* AlarmProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		816E6F362881631800E64482 /* WorldTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTime.swift; sourceTree = "<group>"; };
 		81B36A5628826221002528FA /* AlramList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlramList.swift; sourceTree = "<group>"; };
+		81CA36E52897CC7700BFB9E6 /* StopWatchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,8 +138,8 @@
 			children = (
 				8144C1692891CC7C000E8570 /* StopWatch.swift */,
 				8144C16C2891CE3A000E8570 /* StopWatchWindow.swift */,
-				8166E4432895240300360F6A /* LLL.swift */,
 				8144C16E2891DBE3000E8570 /* StopWatchClass.swift */,
+				81CA36E52897CC7700BFB9E6 /* StopWatchButton.swift */,
 			);
 			path = StopWatch;
 			sourceTree = "<group>";
@@ -168,15 +168,11 @@
 		816E6F0B288161E500E64482 /* AlarmProject */ = {
 			isa = PBXGroup;
 			children = (
-				8144C16528911723000E8570 /* FormatterClass.swift */,
-				8144C001288999CE000E8570 /* TimeList.swift */,
-				8123962A2884FC1E0057EEFD /* ContentView.swift */,
 				8140168E2886B44B009FA2E8 /* Info.plist */,
+				81CA36E92897FA0300BFB9E6 /* App */,
 				8144C00628899BA8000E8570 /* Alrarm */,
 				8144C16B2891CD39000E8570 /* StopWatch */,
-				816E6F0C288161E500E64482 /* AlarmProjectApp.swift */,
 				81690367288197CE007A1812 /* TimerCount.swift */,
-				81690363288170A5007A1812 /* Banner.swift */,
 				816E6F362881631800E64482 /* WorldTime.swift */,
 				8140168928865F45009FA2E8 /* Sound */,
 				816E6F10288161E600E64482 /* Assets.xcassets */,
@@ -208,6 +204,18 @@
 				816E6F29288161E700E64482 /* AlarmProjectUITestsLaunchTests.swift */,
 			);
 			path = AlarmProjectUITests;
+			sourceTree = "<group>";
+		};
+		81CA36E92897FA0300BFB9E6 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				816E6F0C288161E500E64482 /* AlarmProjectApp.swift */,
+				81690363288170A5007A1812 /* Banner.swift */,
+				8123962A2884FC1E0057EEFD /* ContentView.swift */,
+				8144C001288999CE000E8570 /* TimeList.swift */,
+				8144C16528911723000E8570 /* FormatterClass.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,11 +364,11 @@
 				8144C164289110ED000E8570 /* DatePickerWindow.swift in Sources */,
 				8144C16F2891DBE3000E8570 /* StopWatchClass.swift in Sources */,
 				81B36A5728826221002528FA /* AlramList.swift in Sources */,
+				81CA36E62897CC7700BFB9E6 /* StopWatchButton.swift in Sources */,
 				8144C16228910FA6000E8570 /* SoundSetting.swift in Sources */,
 				81690368288197CE007A1812 /* TimerCount.swift in Sources */,
 				8144C16A2891CC7C000E8570 /* StopWatch.swift in Sources */,
 				816E6F0D288161E500E64482 /* AlarmProjectApp.swift in Sources */,
-				8166E4442895240300360F6A /* LLL.swift in Sources */,
 				8144C002288999CE000E8570 /* TimeList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

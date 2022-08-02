@@ -10,6 +10,8 @@ import SwiftUI
 
 class AlertAlarm{
     func alertalram(timeinterval:Int,listName:String,listTime:String){
+        let random:Float = Float.random(in: 0...10)
+        var name:String = ""
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert ,.badge,.sound,]){ success, error in
             if success{
                 print("허용")
@@ -18,14 +20,20 @@ class AlertAlarm{
             }
         }
         let content = UNMutableNotificationContent()
-        content.title = listName
+        if listName == ""{
+            content.title = "unknown"
+            name = "\(random)"
+        }else{
+            content.title = listName
+            name = listName
+        }
         content.subtitle = "예약 시간 \(listTime)"
         content.sound = UNNotificationSound.default
         let triger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(timeinterval) , repeats: false)
-        let request = UNNotificationRequest(identifier: listName, content: content, trigger: triger)
+        let request = UNNotificationRequest(identifier: name, content: content, trigger: triger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-        
-        //print("ddd")
+        //print(request)
+
     }
     func caancelAlarm(timeName:String){
         let center = UNUserNotificationCenter.current()

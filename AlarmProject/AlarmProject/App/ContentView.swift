@@ -45,7 +45,7 @@ struct ContentView: View {
                         Banner(icon: "alarm.fill", color: Color.white, content: "알람").padding(.leading,100)
                     }
                     Spacer()
-                    NavigationLink(destination: StopWatch(stopWatch:self.$stopWatch)){
+                    NavigationLink(destination: StopWatch(stopWatch:self.$stopWatch).environment(\.managedObjectContext, store.container.viewContext)){
                         Banner(icon: "stopwatch.fill", color: Color.white, content: "스톱워치").padding(.trailing,100)
                     }
                     Spacer()

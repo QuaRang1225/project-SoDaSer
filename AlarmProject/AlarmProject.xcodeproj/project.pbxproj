@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		810D05092898E6E200C41F9A /* TimerWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810D05082898E6E200C41F9A /* TimerWindow.swift */; };
+		810D050B2898EFB000C41F9A /* TimerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810D050A2898EFB000C41F9A /* TimerClass.swift */; };
 		812396292884FB960057EEFD /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812396282884FB960057EEFD /* Alarm.swift */; };
 		8123962B2884FC1E0057EEFD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8123962A2884FC1E0057EEFD /* ContentView.swift */; };
 		8140168B28866621009FA2E8 /* Thunder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8140168A28866620009FA2E8 /* Thunder.mp3 */; };
@@ -53,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		810D05082898E6E200C41F9A /* TimerWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWindow.swift; sourceTree = "<group>"; };
+		810D050A2898EFB000C41F9A /* TimerClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerClass.swift; sourceTree = "<group>"; };
 		812396282884FB960057EEFD /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		8123962A2884FC1E0057EEFD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8140168A28866620009FA2E8 /* Thunder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Thunder.mp3; sourceTree = "<group>"; };
@@ -110,6 +114,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		810D05072898E5E800C41F9A /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				81690367288197CE007A1812 /* TimerCount.swift */,
+				810D05082898E6E200C41F9A /* TimerWindow.swift */,
+				810D050A2898EFB000C41F9A /* TimerClass.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
 		8140168928865F45009FA2E8 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,11 +182,11 @@
 		816E6F0B288161E500E64482 /* AlarmProject */ = {
 			isa = PBXGroup;
 			children = (
-				8140168E2886B44B009FA2E8 /* Info.plist */,
-				81CA36E92897FA0300BFB9E6 /* App */,
-				8144C00628899BA8000E8570 /* Alrarm */,
+				810D05072898E5E800C41F9A /* Timer */,
 				8144C16B2891CD39000E8570 /* StopWatch */,
-				81690367288197CE007A1812 /* TimerCount.swift */,
+				8144C00628899BA8000E8570 /* Alrarm */,
+				81CA36E92897FA0300BFB9E6 /* App */,
+				8140168E2886B44B009FA2E8 /* Info.plist */,
 				816E6F362881631800E64482 /* WorldTime.swift */,
 				8140168928865F45009FA2E8 /* Sound */,
 				816E6F10288161E600E64482 /* Assets.xcassets */,
@@ -368,7 +382,9 @@
 				8144C16228910FA6000E8570 /* SoundSetting.swift in Sources */,
 				81690368288197CE007A1812 /* TimerCount.swift in Sources */,
 				8144C16A2891CC7C000E8570 /* StopWatch.swift in Sources */,
+				810D05092898E6E200C41F9A /* TimerWindow.swift in Sources */,
 				816E6F0D288161E500E64482 /* AlarmProjectApp.swift in Sources */,
+				810D050B2898EFB000C41F9A /* TimerClass.swift in Sources */,
 				8144C002288999CE000E8570 /* TimeList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

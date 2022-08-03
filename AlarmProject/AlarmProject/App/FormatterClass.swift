@@ -38,4 +38,10 @@ class FormatterClass{
         return formatter
 
     }
+    var countFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH'시간'mm'분'ss'초'"
+        return formatter
+
+    }
 }

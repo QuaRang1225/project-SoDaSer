@@ -43,7 +43,7 @@ struct StopWatchWindow:View{
                     }){
                         StopWatchButton(image: "stopwatch.fill")
                     }
-                    Spacer().frame(width: 20)
+                    Spacer().frame(width: 30)
                     Button(action: {
                         stopWatchClass.start()
                         withAnimation(.easeInOut(duration: 2).repeatForever(autoreverses: true)){
@@ -52,7 +52,7 @@ struct StopWatchWindow:View{
                     }){
                         StopWatchButton(image: "play.fill")
                     }
-                    Spacer().frame(width: 20)
+                    Spacer().frame(width: 30)
                     Button(action: {
                         stopWatchClass.stop()
                     }){
@@ -67,14 +67,14 @@ struct StopWatchWindow:View{
                     }){
                         StopWatchButton(image: "stopwatch.fill")
                     }
-                    Spacer().frame(width: 20)
+                    Spacer().frame(width: 30)
                     Button(action: {
                         stopWatchClass.pause()
                         animationAmount.toggle()
                     }){
                         StopWatchButton(image: "pause.fill")
                     }
-                    Spacer().frame(width: 20)
+                    Spacer().frame(width: 30)
                     Button(action: {
                         stopWatchClass.stop()
                     }){
@@ -89,7 +89,7 @@ struct StopWatchWindow:View{
                     }){
                         StopWatchButton(image: "stopwatch.fill")
                     }
-                    Spacer().frame(width: 20)
+                    Spacer().frame(width: 30)
                     Button(action: {
                         stopWatchClass.start()
                         withAnimation(.easeInOut(duration: 2).repeatForever(autoreverses: true)){
@@ -98,7 +98,7 @@ struct StopWatchWindow:View{
                     }){
                         StopWatchButton(image: "play.fill")
                     }
-                    Spacer().frame(width: 20)
+                    Spacer().frame(width: 30)
                     Button(action: {
                         stopWatchClass.stop()
                     }){

@@ -102,3 +102,8 @@ struct DatePickerWindow:View{
         }
     }
 }
+struct DatePickerWindow_Previews: PreviewProvider {
+    static var previews: some View {
+        DatePickerWindow()
+    }
+}

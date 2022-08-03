@@ -60,7 +60,7 @@ struct Alarm:View{
                     }
                 
                 }.listRowSeparator(.hidden)
-                Spacer()
+                //Spacer()
                 
                 if alarmAdd{
                     ZStack{
@@ -69,23 +69,20 @@ struct Alarm:View{
                             DatePickerWindow()
                             Spacer()
                         }.background(Color.white).cornerRadius(20)
-                    }.padding().animation(.easeIn(duration: 0.2)).transition(.move(edge: .bottom))
+                    }.animation(.easeIn(duration: 0.2)).transition(.move(edge: .bottom))
                 }
 
                 
                 List{
                     ForEach(timeList){ list in
+                        AlarmList(time: list.time ?? "" ,content: list.alarmText ?? "unknown" ).onAppear(){
+                            timeName = list.alarmText ?? "unknown"
+                        }.listRowBackground(Color.white.opacity(0))
                         
-                        ZStack{
-                            
-                            HStack{ AlarmList(time: list.time ?? "" ,content: list.alarmText ?? "unknown" ).onAppear(){
-                                timeName = list.alarmText ?? "unknown"
-                            }}
-                        }
                     }.onDelete(perform: deleteBooks)
                          
-                }.padding().listStyle(PlainListStyle())
-            }
+                }.listStyle(PlainListStyle())
+            }.padding()
         }
             
     }

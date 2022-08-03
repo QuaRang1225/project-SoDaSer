@@ -10,7 +10,7 @@ import SwiftUI
 
 class AlertAlarm{
     func alertalram(timeinterval:Int,listName:String,listTime:String){
-        let random:Float = Float.random(in: 0...10)
+        let random:Float = Float.random(in: 0...100)
         var name:String = ""
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert ,.badge,.sound,]){ success, error in
             if success{
@@ -25,7 +25,7 @@ class AlertAlarm{
             name = "\(random)"
         }else{
             content.title = listName
-            name = listName
+            name = "\(listName)\(random)"
         }
         content.subtitle = "예약 시간 \(listTime)"
         content.sound = UNNotificationSound.default

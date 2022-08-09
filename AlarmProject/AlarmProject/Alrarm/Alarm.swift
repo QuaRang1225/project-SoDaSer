@@ -35,17 +35,18 @@ struct Alarm:View{
     }
     var body: some View{
         ZStack{
-            Image("NIGHT").resizable().edgesIgnoringSafeArea(.vertical).edgesIgnoringSafeArea(.horizontal)
+            Image("NIGHT").resizable().edgesIgnoringSafeArea(.all)
             VStack{
                 
-                Text(FormatterClass.init().yearFormatter.string(from: currentDate)).font(.system(size: 25)).bold().foregroundColor(.white)
+                Text(FormatterClass.init().yearFormatter.string(from: currentDate)).font(.system(size: 20)).bold().foregroundColor(.white)
                            .onReceive(timer) { input in
                                 self.currentDate = input
                                //print(FormatterClass.init().timeFormatter.string(from: currentDate))
-                            }
+                               
+                           }
                 ZStack{
                     
-                    Banner(icon: "alarm.fill", color: Color.white,content: "알람").frame(width: 400, height: 100)
+                    Banner(icon: "alarm.fill", color: Color.white,content: "알람").padding()
                     Button(action:{
                         alarmAdd.toggle()
                         if alarmAdd{
@@ -59,7 +60,7 @@ struct Alarm:View{
                         Image(systemName: button).font(.system(size: 50)).foregroundColor(.indigo).padding(40).padding(.leading,250)
                     }
                 
-                }.listRowSeparator(.hidden)
+                }
                 //Spacer()
                 
                 if alarmAdd{
@@ -68,7 +69,7 @@ struct Alarm:View{
                             Spacer()
                             DatePickerWindow()
                             Spacer()
-                        }.background(Color.white).cornerRadius(20)
+                        }.background(Color.white).cornerRadius(20).padding()
                     }.animation(.easeIn(duration: 0.2)).transition(.move(edge: .bottom))
                 }
 
@@ -77,12 +78,13 @@ struct Alarm:View{
                     ForEach(timeList){ list in
                         AlarmList(time: list.time ?? "" ,content: list.alarmText ?? "unknown" ).onAppear(){
                             timeName = list.alarmText ?? "unknown"
+                            //print(timeName)
                         }.listRowBackground(Color.white.opacity(0))
                         
                     }.onDelete(perform: deleteBooks)
                          
                 }.listStyle(PlainListStyle())
-            }.padding()
+            }
         }
             
     }
@@ -90,9 +92,14 @@ struct Alarm:View{
         
         guard let index = offsets.first else { return }
         let times = timeList[index]
+        AlertAlarm().caancelAlarm(name: times.alarmText ?? "unknown",num: times.time ?? "")
+//        print(times.alarmText ?? "unknown")
+//        print(index)
         mac.delete(times)
         try? mac.save()
-        AlertAlarm().caancelAlarm(timeName: timeName)
+        
+        
+        
     }
     
 }

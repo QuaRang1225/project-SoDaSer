@@ -32,6 +32,6 @@ struct TimerCount:View{
 }
 struct TimerCount_Previews: PreviewProvider {
     static var previews: some View {
-        TimerCount()
+        TimerCount().environmentObject(TimerClass())
     }
 }

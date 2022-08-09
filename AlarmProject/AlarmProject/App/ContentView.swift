@@ -11,21 +11,15 @@ import SwiftUI
 struct ContentView: View {
     
     @State var currentDate = Date()
-    let timer1 = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     @StateObject private var store = TimeListStore()
-    @State private var worldTime:Bool = false
+    @StateObject var timerClass = TimerClass()
+    @StateObject var stopWatchClass = StopWatchClass()
+    @State private var analogClock:Bool = false
     @State private var alarm:Bool = false
     @State private var stopWatch:Bool = false
     @State private var timer:Bool = false
     
-    
-    var timeFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH':'mm':'ss a"
-        return formatter
-        
-    }
     
     var body: some View {
         
@@ -37,19 +31,19 @@ struct ContentView: View {
                     Text("알람어플").font(.system(size: 40)).fontWeight(.black).foregroundColor(.white).padding()
                               
                     Spacer()
-                    NavigationLink(destination: WoldTime(worldTime:self.$worldTime)){
-                        Banner(icon: "network", color: Color.white, content: "세계시계").padding(.trailing,100)
+                    NavigationLink(destination: AnalogClock(analogClock:self.$analogClock)){
+                        Banner(icon: "clock", color: Color.white, content: "시계").padding(.trailing,100)
                     }
                     Spacer()
                     NavigationLink(destination: Alarm(alarm:self.$alarm).environment(\.managedObjectContext, store.container.viewContext)){
                         Banner(icon: "alarm.fill", color: Color.white, content: "알람").padding(.leading,100)
                     }
                     Spacer()
-                    NavigationLink(destination: StopWatch(stopWatch:self.$stopWatch).environment(\.managedObjectContext, store.container.viewContext)){
+                    NavigationLink(destination: StopWatch(stopWatch:self.$stopWatch).environment(\.managedObjectContext, store.container.viewContext).environmentObject(stopWatchClass)){
                         Banner(icon: "stopwatch.fill", color: Color.white, content: "스톱워치").padding(.trailing,100)
                     }
                     Spacer()
-                    NavigationLink(destination: TimerCount(timer:self.$timer)){
+                    NavigationLink(destination: TimerCount(timer:self.$timer).environment(\.managedObjectContext, store.container.viewContext).environmentObject(timerClass)){
                         Banner(icon: "timer", color: Color.white, content: "타이머").padding(.leading,100)
                     }
                    
@@ -57,12 +51,12 @@ struct ContentView: View {
                     
                 }.padding()
                     .navigationTitle("메인화면")
-                    .navigationBarHidden(self.worldTime)
+                    .navigationBarHidden(self.analogClock)
                     .navigationBarHidden(self.alarm)
                     .navigationBarHidden(self.stopWatch)
                     .navigationBarHidden(self.timer)
                     .onAppear(){
-                        self.worldTime = true
+                        self.analogClock = true
                         self.alarm = true
                         self.stopWatch = true
                         self.timer = true

@@ -9,9 +9,12 @@ import Foundation
 import SwiftUI
 
 class AlertAlarm{
+    
+    static var name:String = ""
+    static var num  = 0
+    
     func alertalram(timeinterval:Int,listName:String,listTime:String){
-        let random:Float = Float.random(in: 0...100)
-        var name:String = ""
+        
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert ,.badge,.sound,]){ success, error in
             if success{
                 print("허용")
@@ -22,22 +25,33 @@ class AlertAlarm{
         let content = UNMutableNotificationContent()
         if listName == ""{
             content.title = "unknown"
-            name = "\(random)"
         }else{
             content.title = listName
-            name = "\(listName)\(random)"
         }
         content.subtitle = "예약 시간 \(listTime)"
         content.sound = UNNotificationSound.default
+        let sentence = listName + listTime
         let triger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(timeinterval) , repeats: false)
-        let request = UNNotificationRequest(identifier: name, content: content, trigger: triger)
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-        //print(request)
+        let request = UNNotificationRequest(identifier: sentence, content: content, trigger: triger)
+        UNUserNotificationCenter.current().add(request){ (err) in
+            if err != nil{
+                print("에러")
+            }
+        }
+        print(sentence)
+        
+
+        
 
     }
-    func caancelAlarm(timeName:String){
+    func caancelAlarm(name:String,num: String){
+
         let center = UNUserNotificationCenter.current()
-        center.removePendingNotificationRequests(withIdentifiers: [timeName])
+        let sentence = name + num
+        center.removeDeliveredNotifications(withIdentifiers: [sentence])
+        center.removePendingNotificationRequests(withIdentifiers: [sentence])
+        print(sentence)
+        
     }
     
 }

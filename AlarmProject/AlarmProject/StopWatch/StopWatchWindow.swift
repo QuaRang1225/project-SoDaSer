@@ -14,10 +14,10 @@ struct StopWatchWindow:View{
     @Environment(\.managedObjectContext) var mac
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Entity.stopwatchList, ascending: true)]) var stopList: FetchedResults<Entity>
     
-    @ObservedObject var stopWatchClass = StopWatchClass()
+    @EnvironmentObject var stopWatchClass : StopWatchClass
     @State private var animate = 0.0
     @State var textColor = Color.white
-    @State private var animationAmount = false
+   // @State private var animationAmount = false
     
 
     var body: some View{
@@ -29,9 +29,8 @@ struct StopWatchWindow:View{
                     .clipShape(Circle())
                     .shadow(color: .gray, radius: 10, x: 0, y: 40)
                     .overlay(Circle().stroke(Color.white.opacity(0.3),lineWidth: 5).padding(5))
-                    .overlay(Circle().stroke(Color.indigo,lineWidth: 5).padding(-5))
-                    .opacity(animationAmount ? 0.5 : 1.0)
-                Text(String(format: "%00.1f", stopWatchClass.timeElapsed)).font(.system(size: 50)).foregroundColor(textColor).fontWeight(.bold).padding()
+                    .overlay(Circle().stroke(Color.gray,lineWidth: 5).padding(-5))
+                Text(String(format: "%0.1f", stopWatchClass.timeElapsed)).font(.system(size: 50)).foregroundColor(textColor).fontWeight(.bold).padding()
                     
             }
             Spacer().frame(height:50)
@@ -46,9 +45,9 @@ struct StopWatchWindow:View{
                     Spacer().frame(width: 30)
                     Button(action: {
                         stopWatchClass.start()
-                        withAnimation(.easeInOut(duration: 2).repeatForever(autoreverses: true)){
-                            animationAmount.toggle()
-                        }
+//                       withAnimation(.easeInOut(duration: 2).repeatForever(autoreverses: true)){
+//                            animationAmount.toggle()
+//                        }
                     }){
                         StopWatchButton(image: "play.fill")
                     }
@@ -70,7 +69,7 @@ struct StopWatchWindow:View{
                     Spacer().frame(width: 30)
                     Button(action: {
                         stopWatchClass.pause()
-                        animationAmount.toggle()
+                        //animationAmount.toggle()
                     }){
                         StopWatchButton(image: "pause.fill")
                     }
@@ -92,9 +91,9 @@ struct StopWatchWindow:View{
                     Spacer().frame(width: 30)
                     Button(action: {
                         stopWatchClass.start()
-                        withAnimation(.easeInOut(duration: 2).repeatForever(autoreverses: true)){
-                            animationAmount.toggle()
-                        }
+//                        withAnimation(.easeInOut(duration: 2).repeatForever(autoreverses: true)){
+//                            animationAmount.toggle()
+//                        }
                     }){
                         StopWatchButton(image: "play.fill")
                     }
@@ -132,6 +131,6 @@ struct StopWatchWindow:View{
 }
 struct StopWatchWindow_Previews: PreviewProvider {
     static var previews: some View {
-        StopWatchWindow()
+        StopWatchWindow().environmentObject(StopWatchClass())
     }
 }

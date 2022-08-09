@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import CoreData
 
 enum modeTimer{
     case run
@@ -15,28 +16,33 @@ enum modeTimer{
 }
 class TimerClass:ObservableObject{
     
-    @Published var timeHoursElapsed = 0.0
-    @Published var timeMinuteElapsed = 0.0
-    @Published var timeSecondElapsed = 0.0
+    
+    @Published var timeElapsed:Double = 0.0
     
     @Published var stopMode:modeTimer = .stop
+
     
     var timer = Timer()
     func start(){
         stopMode = .run
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true){ timer in
-            self.timeHoursElapsed -= (1/3600)
-            self.timeMinuteElapsed -= (1/60)
-            self.timeSecondElapsed -= 1
-            //print(self.timeElapsed)
+        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true){ timer in
+            
+            self.timeElapsed -= 0.1
+            if self.timeElapsed <= 0{
+                timer.invalidate()
+                self.stopMode = .stop
+                print(self.timeElapsed)
+                
+            }
+            
         }
+        
+        
     }
     
     func stop(){
         timer.invalidate()
-        timeHoursElapsed = 0
-        timeMinuteElapsed = 0
-        timeSecondElapsed = 0
+        timeElapsed = 0.0
         stopMode = .stop
     }
     func pause(){

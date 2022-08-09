@@ -11,7 +11,7 @@ import SwiftUI
 struct StopWatch:View{
     
     @Binding var stopWatch  : Bool
-    
+        
     init(stopWatch:Binding<Bool> = .constant(false)){
         _stopWatch = stopWatch
     }
@@ -32,7 +32,8 @@ struct StopWatch:View{
     }
 }
 struct StopWatch_Previews: PreviewProvider {
+
     static var previews: some View {
-        StopWatch()
+        StopWatch().environmentObject(StopWatchClass())
     }
 }

@@ -15,6 +15,15 @@ import AVFoundation
 
 
 
+extension View {
+  @ViewBuilder func applyTextColor(_ color: Color) -> some View {
+    if UITraitCollection.current.userInterfaceStyle == .light {
+      self.colorInvert().colorMultiply(color)
+    } else {
+      self.colorMultiply(color)
+    }
+  }
+}
 
 struct DatePickerWindow:View{
     
@@ -30,7 +39,6 @@ struct DatePickerWindow:View{
     @State var currentDate = Date()
     
     @Environment(\.managedObjectContext) var mac
-    //@Environment(\.managedObjectContext) var mac1
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
    
     
@@ -38,8 +46,14 @@ struct DatePickerWindow:View{
     var body: some View{
         VStack{
             Spacer().frame(height: 20)
-            DatePicker("", selection: $wakeup,displayedComponents: .hourAndMinute)
-                .datePickerStyle(WheelDatePickerStyle()).labelsHidden().padding().background(Color.indigo).cornerRadius(20)
+            ZStack{
+                Image("NIGHT").resizable()
+                    .clipShape(Rectangle()).foregroundColor(.indigo).cornerRadius(20)
+                    .overlay(Rectangle().stroke(Color.gray.opacity(0.8),lineWidth: 20).padding(-5).cornerRadius(10)).padding()
+                DatePicker("", selection: $wakeup,displayedComponents: .hourAndMinute).applyTextColor(.white)
+                    .datePickerStyle(WheelDatePickerStyle()).labelsHidden().padding().opacity(1.0).cornerRadius(20)
+            }
+            
             VStack {
                 Text("알람의 이름을 입력하세요").foregroundColor(.indigo).font(.system(size: 20)).fontWeight(.black)
                 TextField("", text: $content)
@@ -82,14 +96,14 @@ struct DatePickerWindow:View{
                 alarmListInterval.sort()
                 
 
-                print(startTime)
-                print(endTime+86400)
-                print(useTime)
-                print(alarmList)
+//                print(startTime)
+//                print(endTime+86400)
+//                print(useTime)
+//                print(alarmList)
+                //print(content)
                 
                 
-                
-                AlertAlarm().alertalram(timeinterval: alarmListInterval[alarmListInterval.count-1],listName: content ,listTime: String(FormatterClass.init().dateFormatter.string(from: wakeup)))
+                AlertAlarm().alertalram(timeinterval: alarmListInterval[alarmListInterval.count-1],listName: time.alarmText ?? "", listTime: String(FormatterClass.init().dateFormatter.string(from: wakeup)))
  
     
             }){
@@ -98,7 +112,7 @@ struct DatePickerWindow:View{
                 Alert(title: Text("알람이 저장 되었습니다!"))
             }
             
-            Spacer().frame(height:80)
+            Spacer().frame(height:100)
         }
     }
 }

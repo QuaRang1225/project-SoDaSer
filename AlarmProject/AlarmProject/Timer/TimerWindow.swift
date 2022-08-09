@@ -16,7 +16,7 @@ extension UIPickerView {
 }
 struct TimerWindow:View{
     
-    @ObservedObject var timerClass = TimerClass()
+    @EnvironmentObject var timerClass : TimerClass
     
     var hours = [Int](0..<24)
     var minutes = [Int](0..<60)
@@ -24,15 +24,18 @@ struct TimerWindow:View{
     @State var hourSelction = 0
     @State var minuteSelction = 0
     @State var secondSelction = 0
+    @Environment(\.scenePhase) var scenePhase
+    @State var timeRemaining: Double = 0
+    @State private var totalTime: Double = 0
+    @State private var startTime = Date()
+    @State private var stopTime = Date()
+    @State var onOff = false
     
     var body: some View{
         HStack{
             Spacer()
             VStack{
                 Spacer()
-                
-                           
-                //Spacer().frame(height: 20)
                 Image("NIGHT")
                     .clipShape(Rectangle())
                     .foregroundColor(.indigo).frame(width: 75, height: 20).cornerRadius(5)
@@ -44,17 +47,33 @@ struct TimerWindow:View{
                         Image("NIGHT").resizable()
                             .clipShape(Rectangle()).foregroundColor(.indigo).cornerRadius(20)
                             .overlay(Rectangle().stroke(Color.gray.opacity(0.8),lineWidth: 20).padding(-5).cornerRadius(10))
-                        HStack{
-                            Text(String(format: "%0.0f시간", timerClass.timeHoursElapsed)).font(.system(size: 30)).foregroundColor(Color.white).fontWeight(.bold).padding()
-                            Text(String(format: "%0.0f분", timerClass.timeMinuteElapsed)).font(.system(size: 30)).foregroundColor(Color.white).fontWeight(.bold).padding()
-                            Text(String(format: "%0.0f초", timerClass.timeSecondElapsed)).font(.system(size: 30)).foregroundColor(Color.white).fontWeight(.bold).padding()
-                        }
                         
+                        HStack{
+                            Text(getTimeString(time: ceil(timerClass.timeElapsed))).font(.system(size: 50)).foregroundColor(.white).fontWeight(.bold).padding().onChange(of: scenePhase) { newValue in
+                                switch newValue {
+                                case .active:
+                                        bgTimer()
+                                case .inactive:
+                                    print(".inactive")
+                                case .background:
+                                    print("Background")
+                                default:
+                                    print("scenePhase err")
+                                }
+                                    
+                            }
+
+                
+                        }
+                            
+                            
                     }
+                        
+                    
                     
                 
                 
-                //Spacer().frame(height: 20)
+                //Spacer().frame(height: 40)
                 GeometryReader { geometry in
                     HStack(spacing:0){
                         
@@ -97,10 +116,15 @@ struct TimerWindow:View{
                     HStack{
                         Button(action: {
                             timerClass.start()
-                            timerClass.timeHoursElapsed = Double(hourSelction)
-                            timerClass.timeMinuteElapsed = Double(minuteSelction)
-                            timerClass.timeSecondElapsed = Double(secondSelction)
-                            //print(hourSelction)
+                            timerClass.timeElapsed = Double(hourSelction * 3600 + minuteSelction * 60 + secondSelction)
+                            totalTime = timerClass.timeElapsed
+                            if totalTime > 0{
+                                startTime = Date.now
+                                stopTime = startTime
+                                onOff = true
+                                AlertTimer().alretTimer(timeinterval: Int(totalTime), timeName: getTimeString(time: totalTime))
+                                print(totalTime)
+                            }
                             
                         }){
                             StopWatchButton(image: "play.fill")
@@ -108,6 +132,8 @@ struct TimerWindow:View{
                         Spacer().frame(width: 30)
                         Button(action: {
                             timerClass.stop()
+                            onOff = false
+                            AlertTimer().caancelAlarm()
                         }){
                             StopWatchButton(image: "stop.fill")
                         }
@@ -117,12 +143,16 @@ struct TimerWindow:View{
                     HStack{
                         Button(action: {
                             timerClass.pause()
+                            onOff = false
+                            AlertTimer().caancelAlarm()
                         }){
                             StopWatchButton(image: "pause.fill")
                         }
                         Spacer().frame(width: 30)
                         Button(action: {
                             timerClass.stop()
+                            onOff = false
+                            AlertTimer().caancelAlarm()
                         }){
                             StopWatchButton(image: "stop.fill")
                         }
@@ -131,12 +161,17 @@ struct TimerWindow:View{
                     HStack{
                         Button(action: {
                             timerClass.start()
+                            startTime = stopTime
+                            onOff = true
+                            AlertTimer().alretTimer(timeinterval: Int(totalTime), timeName: getTimeString(time: totalTime))
                         }){
                             StopWatchButton(image: "play.fill")
                         }
                         Spacer().frame(width: 30)
                         Button(action: {
                             timerClass.stop()
+                            onOff = false
+                            AlertTimer().caancelAlarm()
                         }){
                             StopWatchButton(image: "stop.fill")
                         }
@@ -147,10 +182,33 @@ struct TimerWindow:View{
             Spacer()
         }.background(Color.white)
     }
+    func getTimeString(time: Double) -> String {
+        let hour = Int(time) / 3600 % 3600
+        let minutes = Int(time) / 60 % 60
+        let seconds = Int(time) % 60
+
+        return String(format: "%02i : %02i : %02i",hour, minutes, seconds)
+    }
+    func bgTimer() {
+        let curTime = Date.now
+        let diffTime = curTime.distance(to: startTime)
+        let result = Double(diffTime.formatted())!
+        print(curTime)
+        print(diffTime)
+        print(result)
+        if onOff{
+            timerClass.timeElapsed = totalTime + result
+        }
+        if timerClass.timeElapsed <= 0{
+            timerClass.timeElapsed = 0
+        }
+
+    }
+    
 }
 
 struct TimerWindow_Previews: PreviewProvider {
     static var previews: some View {
-        TimerWindow()
+        TimerWindow().environmentObject(TimerClass())
     }
 }

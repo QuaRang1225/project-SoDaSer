@@ -56,6 +56,7 @@ struct Alarm:View{
                         }
                         
                         
+                        
                     }){
                         Image(systemName: button).font(.system(size: 50)).foregroundColor(.indigo).padding(40).padding(.leading,250)
                     }
@@ -78,6 +79,7 @@ struct Alarm:View{
                     ForEach(timeList){ list in
                         AlarmList(time: list.time ?? "" ,content: list.alarmText ?? "unknown" ).onAppear(){
                             timeName = list.alarmText ?? "unknown"
+                            
                             //print(timeName)
                         }.listRowBackground(Color.white.opacity(0))
                         

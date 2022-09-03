@@ -24,11 +24,7 @@ struct ClockWindow:View{
     var body: some View{
         VStack{
             Spacer()
-            Text(Locale.current.localizedString(forRegionCode: Locale.current.regionCode!) ?? "")
-                .font(.largeTitle)
-                .foregroundColor(.indigo)
-                .fontWeight(.black)
-                .padding(.top, 40)
+           // Text(Locale.current.localizedString(forRegionCode: Locale.current.regionCode!) ?? "").font(.largeTitle).foregroundColor(.indigo)                .fontWeight(.black)                .padding(.top, 40)
                 HStack{
                     Spacer()
                     ZStack{
@@ -57,7 +53,7 @@ struct ClockWindow:View{
                             .fill(Color.white)
                             .frame(width: 4.5,height: (width - 240)/2)
                             .offset(y: -(width - 240)/4)
-                            .rotationEffect(.init(degrees: Double(currentTime.hour * 6)))
+                            .rotationEffect(.init(degrees: Double(currentTime.hour * 30)))
                         Circle()
                             .fill(Color.white)
                             .frame(width: 15,height: 15)
@@ -69,9 +65,9 @@ struct ClockWindow:View{
                 }.onAppear(perform: {
                     let calender = Calendar.current
                     
-                    let hour = calender.component(.hour, from: Date())
-                    let min = calender.component(.minute, from: Date())
-                    let sec = calender.component(.second, from: Date())
+                    let hour = calender.component(.hour, from: currentDate)
+                    let min = calender.component(.minute, from: currentDate)
+                    let sec = calender.component(.second, from: currentDate)
                     
                     withAnimation(Animation.linear(duration: 0.01)){
                         self.currentTime = Time(hour: hour, minute: min, second: sec)
@@ -80,15 +76,16 @@ struct ClockWindow:View{
                 .onReceive(timer){ _ in
                     let calender = Calendar.current
                     
-                    let hour = calender.component(.hour, from: Date())
-                    let min = calender.component(.minute, from: Date())
-                    let sec = calender.component(.second, from: Date())
+                    let hour = calender.component(.hour, from: currentDate)
+                    let min = calender.component(.minute, from: currentDate)
+                    let sec = calender.component(.second, from: currentDate)
                     
                     withAnimation(Animation.linear(duration: 0.01)){
                         self.currentTime = Time(hour: hour, minute: min, second: sec)
                     }
                     
                 }
+            Text(Locale.current.localizedString(forRegionCode: Locale.current.regionCode!) ?? "").font(.largeTitle).foregroundColor(.indigo)                .fontWeight(.black)                .padding(.top, 40)
             Text(FormatterClass.init().dateFormatter.string(from: currentDate)).font(.system(size: 40)).fontWeight(.black).foregroundColor(.indigo)
                        .onReceive(timer) { input in
                             self.currentDate = input

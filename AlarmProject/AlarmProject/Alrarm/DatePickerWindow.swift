@@ -14,7 +14,6 @@ import AVFoundation
 
 
 
-
 extension View {
   @ViewBuilder func applyTextColor(_ color: Color) -> some View {
     if UITraitCollection.current.userInterfaceStyle == .light {
@@ -37,6 +36,9 @@ struct DatePickerWindow:View{
     @State private var currentTime=String()
     @State var content: String = ""
     @State var currentDate = Date()
+    @State var repeatMode:Bool = false
+    @State var repeatImage = "repeat.1.circle.fill"
+    
     
     @Environment(\.managedObjectContext) var mac
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -55,7 +57,23 @@ struct DatePickerWindow:View{
             }
             
             VStack {
-                Text("알람의 이름을 입력하세요").foregroundColor(.indigo).font(.system(size: 20)).fontWeight(.black)
+                HStack{
+                    Text("알람의 이름을 입력하세요").foregroundColor(.indigo).font(.system(size: 20)).fontWeight(.black)
+                    Button(action: {
+                        repeatMode.toggle()
+                        print(repeatMode)
+                        if repeatMode{
+                            repeatImage = "repeat.circle.fill"
+                        }
+                        else{
+                            repeatImage = "repeat.1.circle.fill"
+                        }
+                    }){
+                        Image(systemName: repeatImage ).foregroundColor(.indigo).font(.system(size: 30))
+                    }
+                    
+                }
+                
                 TextField("", text: $content)
                     .padding()
                     .background(Color(uiColor: .secondarySystemBackground))
@@ -103,7 +121,9 @@ struct DatePickerWindow:View{
                 //print(content)
                 
                 
-                AlertAlarm().alertalram(timeinterval: alarmListInterval[alarmListInterval.count-1],listName: time.alarmText ?? "", listTime: String(FormatterClass.init().dateFormatter.string(from: wakeup)))
+                AlertAlarm().alertalram(timeinterval: alarmListInterval[alarmListInterval.count-1],listName: time.alarmText ?? "", listTime: String(FormatterClass.init().dateFormatter.string(from: wakeup)),repeatAlret: repeatMode)
+                
+               
  
     
             }){

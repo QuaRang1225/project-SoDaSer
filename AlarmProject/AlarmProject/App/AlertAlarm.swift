@@ -13,7 +13,7 @@ class AlertAlarm{
     static var name:String = ""
     static var num  = 0
     
-    func alertalram(timeinterval:Int,listName:String,listTime:String){
+    func alertalram(timeinterval:Int,listName:String,listTime:String,repeatAlret:Bool){
         
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert ,.badge,.sound,]){ success, error in
             if success{
@@ -31,13 +31,17 @@ class AlertAlarm{
         content.subtitle = "예약 시간 \(listTime)"
         content.sound = UNNotificationSound.default
         let sentence = listName + listTime
-        let triger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(timeinterval) , repeats: false)
+        let triger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(timeinterval)-1, repeats: false)
         let request = UNNotificationRequest(identifier: sentence, content: content, trigger: triger)
         UNUserNotificationCenter.current().add(request){ (err) in
             if err != nil{
                 print("에러")
             }
         }
+        
+        
+
+        
         print(sentence)
         
 
@@ -48,8 +52,8 @@ class AlertAlarm{
 
         let center = UNUserNotificationCenter.current()
         let sentence = name + num
-        center.removeDeliveredNotifications(withIdentifiers: [sentence])
-        center.removePendingNotificationRequests(withIdentifiers: [sentence])
+        center.removeDeliveredNotifications(withIdentifiers: [sentence,sentence + "1"])
+        center.removePendingNotificationRequests(withIdentifiers: [sentence,sentence + "1"])
         print(sentence)
         
     }

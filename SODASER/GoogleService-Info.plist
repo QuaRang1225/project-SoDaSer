@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1064189645120-flotjqlnpd2hbur1i729ecgtkpo225pm.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1064189645120-flotjqlnpd2hbur1i729ecgtkpo225pm</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC9JAjl23oyoWqg-u8XfFLjWvLL1JmSeRk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1064189645120</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>quarang.SODASER</string>
+	<key>PROJECT_ID</key>
+	<string>sodaser-69955</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sodaser-69955.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1064189645120:ios:1c3381b5a6d1f8fa93aaa5</string>
+</dict>
+</plist>

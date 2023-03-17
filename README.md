@@ -15,3 +15,6 @@
 ### 아키텍쳐 패턴
 
 - MVVM
+
+![image](https://user-images.githubusercontent.com/31721255/225782449-373c804f-e23f-4269-898f-273bc8a2c7ea.png)
+![image](https://user-images.githubusercontent.com/31721255/225782494-b4db06aa-4821-4466-971d-6e298e74350e.png)
